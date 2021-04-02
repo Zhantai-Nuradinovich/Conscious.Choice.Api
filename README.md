@@ -15,6 +15,13 @@ Product consists of three parts: API, Frontend (Angular), Telegram-bot.
 - Swagger 
 - Api versioning 
 
+### Getting started via visual studio
+ - Download Visual studio
+ - Open .sln file
+ - Wait until VS restores packages
+ - Choose Conscious.Choice.OnionApi
+ - Cntrl + F5
+
 --- 
 ### Additional links 
 - [Telegram-bot](https://github.com/SsamansS/consciousvote) repository that uses this API 
