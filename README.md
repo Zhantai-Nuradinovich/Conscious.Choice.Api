@@ -19,8 +19,18 @@ Product consists of three parts: API, Frontend (Angular), Telegram-bot.
  - Download Visual studio
  - Open .sln file
  - Wait until VS restores packages
- - Choose Conscious.Choice.OnionApi
- - Cntrl + F5
+ - Choose Conscious.Choice.OnionApi as a Startup project
+ - Open Package Manager Console, select << ProjectName >>.Persistence as Default Project
+ - Run these commands:
+ - 
+```
+PM> add-migration Initial-commit-Application -Context ApplicationDbContext -o Migrations/Application
+PM> add-migration Identity-commit -Context IdentityContext -o Migrations/Identity
+
+PM> update-database -Context ApplicationDbContext 
+PM> update-database -Context IdentityContext 
+```
+ - Build and Run application
 
 --- 
 ### Additional links 
