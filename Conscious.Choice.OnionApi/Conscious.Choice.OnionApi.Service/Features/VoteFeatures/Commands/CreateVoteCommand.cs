@@ -10,7 +10,7 @@ namespace Conscious.Choice.OnionApi.Service.Features.VoteFeatures.Commands
     {
         public int LawId { get; set; }
         public int DeputyId { get; set; }
-        public string Decision { get; set; }
+        public int DecisionId { get; set; }
         public class CreateVoteCommandHandler : IRequestHandler<CreateVoteCommand, int>
         {
             private readonly IApplicationDbContext _context;
@@ -21,7 +21,7 @@ namespace Conscious.Choice.OnionApi.Service.Features.VoteFeatures.Commands
             public async Task<int> Handle(CreateVoteCommand request, CancellationToken cancellationToken)
             {
                 var Vote = new Vote();
-                Vote.Decision = request.Decision;
+                Vote.DecisionId = request.DecisionId;
                 Vote.DeputyId = request.DeputyId;
                 Vote.LawId = request.LawId;
 

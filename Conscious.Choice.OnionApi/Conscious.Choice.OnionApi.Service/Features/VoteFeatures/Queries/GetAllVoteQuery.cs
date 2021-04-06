@@ -20,7 +20,7 @@ namespace Conscious.Choice.OnionApi.Service.Features.VoteFeatures.Queries
             }
             public async Task<IEnumerable<Vote>> Handle(GetAllVoteQuery request, CancellationToken cancellationToken)
             {
-                var VoteList = await _context.Votes.ToListAsync();
+                var VoteList = await _context.Votes.Include(x => x.Decision).ToListAsync();
                 if (VoteList == null)
                 {
                     return null;
