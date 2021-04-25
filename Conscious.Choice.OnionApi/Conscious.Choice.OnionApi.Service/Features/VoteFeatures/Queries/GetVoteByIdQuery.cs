@@ -20,8 +20,6 @@ namespace Conscious.Choice.OnionApi.Service.Features.VoteFeatures.Queries
             public async Task<Vote> Handle(GetVoteByIdQuery request, CancellationToken cancellationToken)
             {
                 var Vote = _context.Votes.Where(a => a.Id == request.Id).FirstOrDefault();
-                var Decision = _context.Decisions.Where(d => d.Id == Vote.DecisionId).FirstOrDefault();
-                Vote.Decision = Decision;
                 if (Vote == null) return null;
                 return Vote;
             }

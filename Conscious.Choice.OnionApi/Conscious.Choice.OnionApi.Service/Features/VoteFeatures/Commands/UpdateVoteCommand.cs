@@ -1,4 +1,5 @@
-﻿using Conscious.Choice.OnionApi.Persistence;
+﻿using Conscious.Choice.OnionApi.Domain.Entities;
+using Conscious.Choice.OnionApi.Persistence;
 using MediatR;
 using System.Linq;
 using System.Threading;
@@ -11,7 +12,7 @@ namespace Conscious.Choice.OnionApi.Service.Features.VoteFeatures.Commands
         public int Id { get; set; }
         public int LawId { get; set; }
         public int DeputyId { get; set; }
-        public int DecisionId { get; set; }
+        public Decision Decision { get; set; }
         public class UpdateVoteCommandHandler : IRequestHandler<UpdateVoteCommand, int>
         {
             private readonly IApplicationDbContext _context;
@@ -29,7 +30,7 @@ namespace Conscious.Choice.OnionApi.Service.Features.VoteFeatures.Commands
                 }
                 else
                 {
-                    cust.DecisionId = request.DecisionId;
+                    cust.Decision = request.Decision;
                     cust.LawId = request.LawId;
                     cust.DeputyId = request.DeputyId;
                     _context.Votes.Update(cust);

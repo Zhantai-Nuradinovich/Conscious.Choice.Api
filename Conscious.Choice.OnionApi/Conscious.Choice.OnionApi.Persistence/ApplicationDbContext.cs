@@ -24,7 +24,6 @@ namespace Conscious.Choice.OnionApi.Persistence
         public DbSet<Deputy> Deputies { get; set; }
         public DbSet<Law> Laws { get; set; }
         public DbSet<Vote> Votes { get; set; }
-	    public DbSet<Decision> Decisions { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Conscious.Choice.OnionApi.Persistence.Migrations.Application
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20210406134140_Initial-commit-Application")]
+    [Migration("20210425055511_Initial-commit-Application")]
     partial class InitialcommitApplication
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -79,21 +79,6 @@ namespace Conscious.Choice.OnionApi.Persistence.Migrations.Application
                     b.HasKey("Id");
 
                     b.ToTable("Customers");
-                });
-
-            modelBuilder.Entity("Conscious.Choice.OnionApi.Domain.Entities.Decision", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Result")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Decisions");
                 });
 
             modelBuilder.Entity("Conscious.Choice.OnionApi.Domain.Entities.Deputy", b =>
@@ -220,7 +205,7 @@ namespace Conscious.Choice.OnionApi.Persistence.Migrations.Application
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("DecisionId")
+                    b.Property<int>("Decision")
                         .HasColumnType("int");
 
                     b.Property<int>("DeputyId")
@@ -230,8 +215,6 @@ namespace Conscious.Choice.OnionApi.Persistence.Migrations.Application
                         .HasColumnType("int");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("DecisionId");
 
                     b.HasIndex("DeputyId");
 
@@ -283,12 +266,6 @@ namespace Conscious.Choice.OnionApi.Persistence.Migrations.Application
 
             modelBuilder.Entity("Conscious.Choice.OnionApi.Domain.Entities.Vote", b =>
                 {
-                    b.HasOne("Conscious.Choice.OnionApi.Domain.Entities.Decision", "Decision")
-                        .WithMany()
-                        .HasForeignKey("DecisionId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("Conscious.Choice.OnionApi.Domain.Entities.Deputy", "Deputy")
                         .WithMany()
                         .HasForeignKey("DeputyId")
@@ -300,8 +277,6 @@ namespace Conscious.Choice.OnionApi.Persistence.Migrations.Application
                         .HasForeignKey("LawId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Decision");
 
                     b.Navigation("Deputy");
 

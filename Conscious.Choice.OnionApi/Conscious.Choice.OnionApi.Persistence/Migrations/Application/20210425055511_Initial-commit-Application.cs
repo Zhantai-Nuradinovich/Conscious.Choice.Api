@@ -44,19 +44,6 @@ namespace Conscious.Choice.OnionApi.Persistence.Migrations.Application
                 });
 
             migrationBuilder.CreateTable(
-                name: "Decisions",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Result = table.Column<string>(type: "nvarchar(max)", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Decisions", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Deputies",
                 columns: table => new
                 {
@@ -126,17 +113,11 @@ namespace Conscious.Choice.OnionApi.Persistence.Migrations.Application
                         .Annotation("SqlServer:Identity", "1, 1"),
                     LawId = table.Column<int>(type: "int", nullable: false),
                     DeputyId = table.Column<int>(type: "int", nullable: false),
-                    DecisionId = table.Column<int>(type: "int", nullable: false)
+                    Decision = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Votes", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Votes_Decisions_DecisionId",
-                        column: x => x.DecisionId,
-                        principalTable: "Decisions",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Votes_Deputies_DeputyId",
                         column: x => x.DeputyId,
@@ -224,11 +205,6 @@ namespace Conscious.Choice.OnionApi.Persistence.Migrations.Application
                 column: "SupplierId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Votes_DecisionId",
-                table: "Votes",
-                column: "DecisionId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Votes_DeputyId",
                 table: "Votes",
                 column: "DeputyId");
@@ -252,9 +228,6 @@ namespace Conscious.Choice.OnionApi.Persistence.Migrations.Application
 
             migrationBuilder.DropTable(
                 name: "Products");
-
-            migrationBuilder.DropTable(
-                name: "Decisions");
 
             migrationBuilder.DropTable(
                 name: "Deputies");
