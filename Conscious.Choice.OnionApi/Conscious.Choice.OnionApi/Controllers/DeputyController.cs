@@ -8,7 +8,6 @@ using System.Threading.Tasks;
 
 namespace Conscious.Choice.OnionApi.Controllers
 {
-    [Authorize]
     [ApiController]
     [Route("api/v{version:apiVersion}/Deputy")]
     [ApiVersion("1.0")]
@@ -34,6 +33,12 @@ namespace Conscious.Choice.OnionApi.Controllers
         public async Task<IActionResult> GetById(int id)
         {
             return Ok(await Mediator.Send(new GetDeputyByIdQuery { Id = id }));
+        }
+
+        [HttpGet("name/{name}")]
+        public async Task<IActionResult> GetAllActivity(string name)
+        {
+            return Ok(await Mediator.Send(new GetDeputyActivityQuery { Name = name }));
         }
 
         [HttpDelete("{id}")]

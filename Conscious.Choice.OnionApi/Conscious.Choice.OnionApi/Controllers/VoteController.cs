@@ -8,7 +8,6 @@ using System.Threading.Tasks;
 
 namespace Conscious.Choice.OnionApi.Controllers
 {
-    [Authorize]
     [ApiController]
     [Route("api/v{version:apiVersion}/Vote")]
     [ApiVersion("1.0")]
