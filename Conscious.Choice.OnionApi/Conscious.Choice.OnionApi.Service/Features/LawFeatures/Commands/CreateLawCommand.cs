@@ -20,9 +20,8 @@ namespace Conscious.Choice.OnionApi.Service.Features.LawFeatures.Commands
             }
             public async Task<int> Handle(CreateLawCommand request, CancellationToken cancellationToken)
             {
-                var Law = new Law();
+                var Law = new TLaw();
                 Law.LawName = request.LawName;
-                Law.OfferDate = request.OfferDate;
 
                 _context.Laws.Add(Law);
                 await _context.SaveChangesAsync();

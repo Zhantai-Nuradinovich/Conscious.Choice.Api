@@ -24,7 +24,8 @@ namespace Conscious.Choice.OnionApi.Service.Features.DeputyFeatures.Queries
                 DeputyActivity deputy = new DeputyActivity();
                 deputy.Name = request.Name;
                 int id = _context.Deputies.Where(d => d.Name == request.Name).FirstOrDefault().Id;
-                var Votes = _context.Votes.Include(v => v.Law).Where(v => v.DeputyId == id).ToList();
+                var Votes = _context.Votes.Include(v => v.LawsAmendment).Include(w => w.LawsAmendment.Law)
+                                          .Where(v => v.DeputyId == id).ToList();
 
                 deputy.Votes = Votes;
                 if (deputy == null) return null;

@@ -11,9 +11,9 @@ namespace Conscious.Choice.OnionApi.Persistence
         DbSet<Order> Orders { get; set; }
         DbSet<Product> Products { get; set; }
         DbSet<Supplier> Suppliers { get; set; }
-        DbSet<Deputy> Deputies { get; set; }
-        DbSet<Law> Laws { get; set; }
-        DbSet<Vote> Votes { get; set; }
+        DbSet<TDeputy> Deputies { get; set; }
+        DbSet<TLaw> Laws { get; set; }
+        DbSet<TVote> Votes { get; set; }
         Task<int> SaveChangesAsync();
     }
 }

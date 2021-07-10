@@ -3,8 +3,9 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Conscious.Choice.OnionApi.Domain.Entities
 {
-    public class Deputy : BaseEntity
+    public class TDeputy : BaseEntity
     {
         public string Name { get; set; }
+        public ICollection<TVote> Votes { get; set; }
     }
 }

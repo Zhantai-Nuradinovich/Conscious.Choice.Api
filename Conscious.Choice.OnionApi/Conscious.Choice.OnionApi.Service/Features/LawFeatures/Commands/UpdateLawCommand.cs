@@ -30,7 +30,6 @@ namespace Conscious.Choice.OnionApi.Service.Features.LawFeatures.Commands
                 else
                 {
                     law.LawName = request.LawName;
-                    law.OfferDate = request.OfferDate;
                     _context.Laws.Update(law);
                     await _context.SaveChangesAsync();
                     return law.Id;

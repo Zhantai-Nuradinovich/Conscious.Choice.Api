@@ -18,7 +18,7 @@ namespace Conscious.Choice.OnionApi.Service.Features.DeputyFeatures.Commands
             }
             public async Task<int> Handle(CreateDeputyCommand request, CancellationToken cancellationToken)
             {
-                var deputy = new Deputy();
+                var deputy = new TDeputy();
                 deputy.Name = request.Name;
 
                 _context.Deputies.Add(deputy);

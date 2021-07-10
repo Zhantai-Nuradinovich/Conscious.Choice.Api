@@ -20,7 +20,7 @@ namespace Conscious.Choice.OnionApi.Service.Features.VoteFeatures.Commands
             }
             public async Task<int> Handle(CreateVoteCommand request, CancellationToken cancellationToken)
             {
-                var Vote = new Vote();
+                var Vote = new TVote();
                 Vote.Decision = request.Decision;
                 Vote.DeputyId = request.DeputyId;
                 Vote.LawId = request.LawId;

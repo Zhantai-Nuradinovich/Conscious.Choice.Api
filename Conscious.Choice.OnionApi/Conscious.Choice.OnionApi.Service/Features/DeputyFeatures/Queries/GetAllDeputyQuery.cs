@@ -8,16 +8,16 @@ using System.Threading.Tasks;
 
 namespace Conscious.Choice.OnionApi.Service.Features.DeputyFeatures.Queries
 {
-    public class GetAllDeputyQuery : IRequest<IEnumerable<Deputy>>
+    public class GetAllDeputyQuery : IRequest<IEnumerable<TDeputy>>
     {
-        public class GetAllDeputyQueryHandler : IRequestHandler<GetAllDeputyQuery, IEnumerable<Deputy>>
+        public class GetAllDeputyQueryHandler : IRequestHandler<GetAllDeputyQuery, IEnumerable<TDeputy>>
         {
             private readonly IApplicationDbContext _context;
             public GetAllDeputyQueryHandler(IApplicationDbContext context)
             {
                 _context = context;
             }
-            public async Task<IEnumerable<Deputy>> Handle(GetAllDeputyQuery request, CancellationToken cancellationToken)
+            public async Task<IEnumerable<TDeputy>> Handle(GetAllDeputyQuery request, CancellationToken cancellationToken)
             {
                 var DeputyList = await _context.Deputies.ToListAsync();
                 if (DeputyList == null)

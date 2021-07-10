@@ -8,17 +8,17 @@ using System.Threading.Tasks;
 
 namespace Conscious.Choice.OnionApi.Service.Features.VoteFeatures.Queries
 {
-    public class GetAllVoteQuery : IRequest<IEnumerable<Vote>>
+    public class GetAllVoteQuery : IRequest<IEnumerable<TVote>>
     {
 
-        public class GetAllVoteQueryHandler : IRequestHandler<GetAllVoteQuery, IEnumerable<Vote>>
+        public class GetAllVoteQueryHandler : IRequestHandler<GetAllVoteQuery, IEnumerable<TVote>>
         {
             private readonly IApplicationDbContext _context;
             public GetAllVoteQueryHandler(IApplicationDbContext context)
             {
                 _context = context;
             }
-            public async Task<IEnumerable<Vote>> Handle(GetAllVoteQuery request, CancellationToken cancellationToken)
+            public async Task<IEnumerable<TVote>> Handle(GetAllVoteQuery request, CancellationToken cancellationToken)
             {
                 var VoteList = await _context.Votes.ToListAsync();
                 if (VoteList == null)
