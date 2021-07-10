@@ -1,5 +1,7 @@
 # API for conscious choice 
 
+[View in Azure](https://panakota.azurewebsites.net/OpenAPI/index.html)
+
 ## About product 
 
 It helps voters to get all information about deputies. Information consists of voting results on bills. 
@@ -14,8 +16,9 @@ Product consists of three parts: API, Frontend (Angular), Telegram-bot.
 - Onion architecture
 - Swagger 
 - Api versioning 
+- CI/CD
 
-### Getting started via visual studio
+### Getting started via visual studio and local DB
  - Download Visual studio
  - Open .sln file
  - Wait until VS restores packages
