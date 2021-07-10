@@ -8,7 +8,7 @@ namespace Conscious.Choice.OnionApi.Domain.Entities
 {
     public class TLawsAmendment: BaseEntity
     {
-        public string LawId { get; set; }
+        public int LawId { get; set; }
         public TLaw Law { get; set; }
         public DateTime AmendmentDate { get; set; }
         public string LinkLaw { get; set; } //какой закон правили

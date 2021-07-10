@@ -93,9 +93,9 @@ namespace Conscious.Choice.OnionApi.Persistence.Migrations.Identity
                     b.HasData(
                         new
                         {
-                            Id = "a78943cb-9312-4f8c-bfe1-2d5c812b1231",
+                            Id = "260444f3-f0ba-4e5a-9399-902e380c2b91",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "7f5e3228-bc28-4f0e-ae0c-d2a658f35d6a",
+                            ConcurrencyStamp = "c08c2d67-e15c-421a-a116-2fe463feeeb8",
                             Email = "superadmin@gmail.com",
                             EmailConfirmed = true,
                             FirstName = "Amit",
@@ -105,15 +105,15 @@ namespace Conscious.Choice.OnionApi.Persistence.Migrations.Identity
                             NormalizedUserName = "SUPERADMIN",
                             PasswordHash = "AQAAAAEAACcQAAAAEBLjouNqaeiVWbN0TbXUS3+ChW3d7aQIk/BQEkWBxlrdRRngp14b0BIH0Rp65qD6mA==",
                             PhoneNumberConfirmed = true,
-                            SecurityStamp = "04cea03b-66d7-478c-bf13-0077eebd57a8",
+                            SecurityStamp = "2e7fc7a3-9249-4709-902c-be8a5915fb56",
                             TwoFactorEnabled = false,
                             UserName = "superadmin"
                         },
                         new
                         {
-                            Id = "d860ecc2-39d1-462d-bdc4-78410a6fd56e",
+                            Id = "32dd4951-a989-4d9c-9c91-a3d37e1ecf41",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "9b1fdbf6-dc79-47ff-955b-ade5eb42cbee",
+                            ConcurrencyStamp = "5d05ba98-58f2-4a56-b416-8df0a4d1591b",
                             Email = "basicuser@gmail.com",
                             EmailConfirmed = true,
                             FirstName = "Basic",
@@ -123,7 +123,7 @@ namespace Conscious.Choice.OnionApi.Persistence.Migrations.Identity
                             NormalizedUserName = "BASICUSER",
                             PasswordHash = "AQAAAAEAACcQAAAAEBLjouNqaeiVWbN0TbXUS3+ChW3d7aQIk/BQEkWBxlrdRRngp14b0BIH0Rp65qD6mA==",
                             PhoneNumberConfirmed = true,
-                            SecurityStamp = "0e5d97fa-0590-447b-80ac-243c7bd26dc0",
+                            SecurityStamp = "1ae5d52c-5966-474e-8ebd-7fbb54d56666",
                             TwoFactorEnabled = false,
                             UserName = "basicuser"
                         });
@@ -196,29 +196,29 @@ namespace Conscious.Choice.OnionApi.Persistence.Migrations.Identity
                     b.HasData(
                         new
                         {
-                            Id = "0a2ec7f4-6ed3-422b-910f-549d243bdead",
-                            ConcurrencyStamp = "c45223e7-218f-4202-978b-b48d55ea6698",
+                            Id = "3ededdc2-24fa-45cf-bd05-c27521ddb71a",
+                            ConcurrencyStamp = "b2ccdc63-ed66-40f4-8a4c-861e6398a278",
                             Name = "SuperAdmin",
                             NormalizedName = "SuperAdmin"
                         },
                         new
                         {
-                            Id = "b8d3f3c3-6713-4523-a702-a4de7e22e697",
-                            ConcurrencyStamp = "2f53a84d-3a02-4c86-b069-073aa7dfd2d5",
+                            Id = "acaad587-8bef-4294-9692-ae3428df1c88",
+                            ConcurrencyStamp = "47533413-591e-4171-beb9-c02aad6976f4",
                             Name = "Admin",
                             NormalizedName = "Admin"
                         },
                         new
                         {
-                            Id = "08672ae8-9cbc-48d1-b501-e7fcb364b96c",
-                            ConcurrencyStamp = "c8fa02e5-bc8a-4f31-9188-9ea7a25474a8",
+                            Id = "a2e59fcf-9016-4004-826d-63cd8cc0ef3b",
+                            ConcurrencyStamp = "0a3a7a7f-f831-462c-9aab-050cb53ca668",
                             Name = "Moderator",
                             NormalizedName = "Moderator"
                         },
                         new
                         {
-                            Id = "2be97a34-c0a0-4949-9219-c41007422e6b",
-                            ConcurrencyStamp = "663cb643-dcb6-414d-8e5d-ec30720fd9fd",
+                            Id = "7cb15090-b3f2-4ead-a61b-46c01b7d7894",
+                            ConcurrencyStamp = "84965cc8-9c5a-4f87-b59d-8d7a294196df",
                             Name = "Basic",
                             NormalizedName = "Basic"
                         });
@@ -311,28 +311,28 @@ namespace Conscious.Choice.OnionApi.Persistence.Migrations.Identity
                     b.HasData(
                         new
                         {
-                            UserId = "d860ecc2-39d1-462d-bdc4-78410a6fd56e",
-                            RoleId = "2be97a34-c0a0-4949-9219-c41007422e6b"
+                            UserId = "32dd4951-a989-4d9c-9c91-a3d37e1ecf41",
+                            RoleId = "7cb15090-b3f2-4ead-a61b-46c01b7d7894"
                         },
                         new
                         {
-                            UserId = "a78943cb-9312-4f8c-bfe1-2d5c812b1231",
-                            RoleId = "0a2ec7f4-6ed3-422b-910f-549d243bdead"
+                            UserId = "260444f3-f0ba-4e5a-9399-902e380c2b91",
+                            RoleId = "3ededdc2-24fa-45cf-bd05-c27521ddb71a"
                         },
                         new
                         {
-                            UserId = "a78943cb-9312-4f8c-bfe1-2d5c812b1231",
-                            RoleId = "b8d3f3c3-6713-4523-a702-a4de7e22e697"
+                            UserId = "260444f3-f0ba-4e5a-9399-902e380c2b91",
+                            RoleId = "acaad587-8bef-4294-9692-ae3428df1c88"
                         },
                         new
                         {
-                            UserId = "a78943cb-9312-4f8c-bfe1-2d5c812b1231",
-                            RoleId = "08672ae8-9cbc-48d1-b501-e7fcb364b96c"
+                            UserId = "260444f3-f0ba-4e5a-9399-902e380c2b91",
+                            RoleId = "a2e59fcf-9016-4004-826d-63cd8cc0ef3b"
                         },
                         new
                         {
-                            UserId = "a78943cb-9312-4f8c-bfe1-2d5c812b1231",
-                            RoleId = "2be97a34-c0a0-4949-9219-c41007422e6b"
+                            UserId = "260444f3-f0ba-4e5a-9399-902e380c2b91",
+                            RoleId = "7cb15090-b3f2-4ead-a61b-46c01b7d7894"
                         });
                 });
 

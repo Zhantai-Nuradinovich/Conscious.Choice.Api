@@ -63,7 +63,9 @@ namespace Conscious.Choice.OnionApi.Persistence.Migrations.Application
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     LawName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    OfferDate = table.Column<DateTime>(type: "datetime2", nullable: false)
+                    LawNumber = table.Column<int>(type: "int", nullable: false),
+                    Category = table.Column<int>(type: "int", nullable: false),
+                    AddInfo = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -106,26 +108,21 @@ namespace Conscious.Choice.OnionApi.Persistence.Migrations.Application
                 });
 
             migrationBuilder.CreateTable(
-                name: "Votes",
+                name: "LawsAmendments",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     LawId = table.Column<int>(type: "int", nullable: false),
-                    DeputyId = table.Column<int>(type: "int", nullable: false),
-                    Decision = table.Column<int>(type: "int", nullable: false)
+                    AmendmentDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    LinkLaw = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    LinkVotes = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Votes", x => x.Id);
+                    table.PrimaryKey("PK_LawsAmendments", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Votes_Deputies_DeputyId",
-                        column: x => x.DeputyId,
-                        principalTable: "Deputies",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Votes_Laws_LawId",
+                        name: "FK_LawsAmendments_Laws_LawId",
                         column: x => x.LawId,
                         principalTable: "Laws",
                         principalColumn: "Id",
@@ -161,6 +158,34 @@ namespace Conscious.Choice.OnionApi.Persistence.Migrations.Application
                 });
 
             migrationBuilder.CreateTable(
+                name: "Votes",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    LawId = table.Column<int>(type: "int", nullable: false),
+                    LawsAmendmentId = table.Column<int>(type: "int", nullable: true),
+                    DeputyId = table.Column<int>(type: "int", nullable: false),
+                    Decision = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Votes", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Votes_Deputies_DeputyId",
+                        column: x => x.DeputyId,
+                        principalTable: "Deputies",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Votes_LawsAmendments_LawsAmendmentId",
+                        column: x => x.LawsAmendmentId,
+                        principalTable: "LawsAmendments",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "OrderDetail",
                 columns: table => new
                 {
@@ -183,6 +208,11 @@ namespace Conscious.Choice.OnionApi.Persistence.Migrations.Application
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_LawsAmendments_LawId",
+                table: "LawsAmendments",
+                column: "LawId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_OrderDetail_ProductId",
@@ -210,9 +240,9 @@ namespace Conscious.Choice.OnionApi.Persistence.Migrations.Application
                 column: "DeputyId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Votes_LawId",
+                name: "IX_Votes_LawsAmendmentId",
                 table: "Votes",
-                column: "LawId");
+                column: "LawsAmendmentId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -233,7 +263,7 @@ namespace Conscious.Choice.OnionApi.Persistence.Migrations.Application
                 name: "Deputies");
 
             migrationBuilder.DropTable(
-                name: "Laws");
+                name: "LawsAmendments");
 
             migrationBuilder.DropTable(
                 name: "Customers");
@@ -243,6 +273,9 @@ namespace Conscious.Choice.OnionApi.Persistence.Migrations.Application
 
             migrationBuilder.DropTable(
                 name: "Suppliers");
+
+            migrationBuilder.DropTable(
+                name: "Laws");
         }
     }
 }

@@ -79,39 +79,6 @@ namespace Conscious.Choice.OnionApi.Persistence.Migrations.Application
                     b.ToTable("Customers");
                 });
 
-            modelBuilder.Entity("Conscious.Choice.OnionApi.Domain.Entities.Deputy", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Deputies");
-                });
-
-            modelBuilder.Entity("Conscious.Choice.OnionApi.Domain.Entities.Law", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("LawName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("OfferDate")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Laws");
-                });
-
             modelBuilder.Entity("Conscious.Choice.OnionApi.Domain.Entities.Order", b =>
                 {
                     b.Property<int>("Id")
@@ -196,7 +163,72 @@ namespace Conscious.Choice.OnionApi.Persistence.Migrations.Application
                     b.ToTable("Suppliers");
                 });
 
-            modelBuilder.Entity("Conscious.Choice.OnionApi.Domain.Entities.Vote", b =>
+            modelBuilder.Entity("Conscious.Choice.OnionApi.Domain.Entities.TDeputy", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Deputies");
+                });
+
+            modelBuilder.Entity("Conscious.Choice.OnionApi.Domain.Entities.TLaw", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("AddInfo")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Category")
+                        .HasColumnType("int");
+
+                    b.Property<string>("LawName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("LawNumber")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Laws");
+                });
+
+            modelBuilder.Entity("Conscious.Choice.OnionApi.Domain.Entities.TLawsAmendment", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("AmendmentDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("LawId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("LinkLaw")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LinkVotes")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("LawId");
+
+                    b.ToTable("LawsAmendments");
+                });
+
+            modelBuilder.Entity("Conscious.Choice.OnionApi.Domain.Entities.TVote", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -212,11 +244,14 @@ namespace Conscious.Choice.OnionApi.Persistence.Migrations.Application
                     b.Property<int>("LawId")
                         .HasColumnType("int");
 
+                    b.Property<int?>("LawsAmendmentId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.HasIndex("DeputyId");
 
-                    b.HasIndex("LawId");
+                    b.HasIndex("LawsAmendmentId");
 
                     b.ToTable("Votes");
                 });
@@ -262,23 +297,32 @@ namespace Conscious.Choice.OnionApi.Persistence.Migrations.Application
                         .HasForeignKey("SupplierId");
                 });
 
-            modelBuilder.Entity("Conscious.Choice.OnionApi.Domain.Entities.Vote", b =>
+            modelBuilder.Entity("Conscious.Choice.OnionApi.Domain.Entities.TLawsAmendment", b =>
                 {
-                    b.HasOne("Conscious.Choice.OnionApi.Domain.Entities.Deputy", "Deputy")
-                        .WithMany()
-                        .HasForeignKey("DeputyId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Conscious.Choice.OnionApi.Domain.Entities.Law", "Law")
-                        .WithMany()
+                    b.HasOne("Conscious.Choice.OnionApi.Domain.Entities.TLaw", "Law")
+                        .WithMany("Amendments")
                         .HasForeignKey("LawId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.Navigation("Law");
+                });
+
+            modelBuilder.Entity("Conscious.Choice.OnionApi.Domain.Entities.TVote", b =>
+                {
+                    b.HasOne("Conscious.Choice.OnionApi.Domain.Entities.TDeputy", "Deputy")
+                        .WithMany("Votes")
+                        .HasForeignKey("DeputyId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Conscious.Choice.OnionApi.Domain.Entities.TLawsAmendment", "LawsAmendment")
+                        .WithMany("Votes")
+                        .HasForeignKey("LawsAmendmentId");
+
                     b.Navigation("Deputy");
 
-                    b.Navigation("Law");
+                    b.Navigation("LawsAmendment");
                 });
 
             modelBuilder.Entity("Conscious.Choice.OnionApi.Domain.Entities.Category", b =>
@@ -299,6 +343,21 @@ namespace Conscious.Choice.OnionApi.Persistence.Migrations.Application
             modelBuilder.Entity("Conscious.Choice.OnionApi.Domain.Entities.Supplier", b =>
                 {
                     b.Navigation("Products");
+                });
+
+            modelBuilder.Entity("Conscious.Choice.OnionApi.Domain.Entities.TDeputy", b =>
+                {
+                    b.Navigation("Votes");
+                });
+
+            modelBuilder.Entity("Conscious.Choice.OnionApi.Domain.Entities.TLaw", b =>
+                {
+                    b.Navigation("Amendments");
+                });
+
+            modelBuilder.Entity("Conscious.Choice.OnionApi.Domain.Entities.TLawsAmendment", b =>
+                {
+                    b.Navigation("Votes");
                 });
 #pragma warning restore 612, 618
         }
