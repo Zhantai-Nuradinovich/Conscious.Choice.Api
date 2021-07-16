@@ -10,7 +10,7 @@ namespace Conscious.Choice.OnionApi.Service.Features.VoteFeatures.Commands
     public class UpdateVoteCommand : IRequest<int>
     {
         public int Id { get; set; }
-        public int LawId { get; set; }
+        public int LawsAmendmentId { get; set; }
         public int DeputyId { get; set; }
         public Decision Decision { get; set; }
         public class UpdateVoteCommandHandler : IRequestHandler<UpdateVoteCommand, int>
@@ -31,7 +31,7 @@ namespace Conscious.Choice.OnionApi.Service.Features.VoteFeatures.Commands
                 else
                 {
                     cust.Decision = request.Decision;
-                    cust.LawId = request.LawId;
+                    cust.LawsAmendmentId = request.LawsAmendmentId;
                     cust.DeputyId = request.DeputyId;
                     _context.Votes.Update(cust);
                     await _context.SaveChangesAsync();

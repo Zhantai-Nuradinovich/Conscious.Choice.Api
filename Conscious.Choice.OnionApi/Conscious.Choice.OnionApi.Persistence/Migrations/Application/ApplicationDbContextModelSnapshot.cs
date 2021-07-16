@@ -215,17 +215,35 @@ namespace Conscious.Choice.OnionApi.Persistence.Migrations.Application
                     b.Property<int>("LawId")
                         .HasColumnType("int");
 
-                    b.Property<string>("LinkLaw")
+                    b.Property<string>("LinkToLaw")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("LinkVotes")
+                    b.Property<string>("LinkToVotes")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
                     b.HasIndex("LawId");
 
-                    b.ToTable("LawsAmendments");
+                    b.ToTable("Amendments");
+                });
+
+            modelBuilder.Entity("Conscious.Choice.OnionApi.Domain.Entities.TSetting", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Value")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Settings");
                 });
 
             modelBuilder.Entity("Conscious.Choice.OnionApi.Domain.Entities.TVote", b =>
@@ -241,10 +259,7 @@ namespace Conscious.Choice.OnionApi.Persistence.Migrations.Application
                     b.Property<int>("DeputyId")
                         .HasColumnType("int");
 
-                    b.Property<int>("LawId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("LawsAmendmentId")
+                    b.Property<int>("LawsAmendmentId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -318,7 +333,9 @@ namespace Conscious.Choice.OnionApi.Persistence.Migrations.Application
 
                     b.HasOne("Conscious.Choice.OnionApi.Domain.Entities.TLawsAmendment", "LawsAmendment")
                         .WithMany("Votes")
-                        .HasForeignKey("LawsAmendmentId");
+                        .HasForeignKey("LawsAmendmentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Deputy");
 

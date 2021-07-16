@@ -10,10 +10,4 @@ namespace Conscious.Choice.OnionApi.Domain.Entities
         Rejected,
         Initiator
     }
-
-    public enum LawCategory
-    {
-        Constitution,
-        Unknown
-    }
 }
