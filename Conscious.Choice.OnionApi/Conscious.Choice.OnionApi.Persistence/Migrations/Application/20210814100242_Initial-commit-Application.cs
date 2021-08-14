@@ -63,7 +63,8 @@ namespace Conscious.Choice.OnionApi.Persistence.Migrations.Application
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     LawName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    LawNumber = table.Column<int>(type: "int", nullable: false),
+                    LawNumber = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    LawDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Category = table.Column<int>(type: "int", nullable: false),
                     AddInfo = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },

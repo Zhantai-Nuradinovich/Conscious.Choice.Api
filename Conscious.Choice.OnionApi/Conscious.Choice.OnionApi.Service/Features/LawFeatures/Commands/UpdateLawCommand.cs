@@ -11,7 +11,6 @@ namespace Conscious.Choice.OnionApi.Service.Features.LawFeatures.Commands
     {
         public int Id { get; set; }
         public string LawName { get; set; }
-        public DateTime OfferDate { get; set; }
         public class UpdateLawCommandHandler : IRequestHandler<UpdateLawCommand, int>
         {
             private readonly IApplicationDbContext _context;

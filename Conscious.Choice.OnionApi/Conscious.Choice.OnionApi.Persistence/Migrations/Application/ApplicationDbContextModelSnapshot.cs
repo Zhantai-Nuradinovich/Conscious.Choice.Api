@@ -191,11 +191,14 @@ namespace Conscious.Choice.OnionApi.Persistence.Migrations.Application
                     b.Property<int>("Category")
                         .HasColumnType("int");
 
+                    b.Property<DateTime>("LawDate")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("LawName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("LawNumber")
-                        .HasColumnType("int");
+                    b.Property<string>("LawNumber")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 

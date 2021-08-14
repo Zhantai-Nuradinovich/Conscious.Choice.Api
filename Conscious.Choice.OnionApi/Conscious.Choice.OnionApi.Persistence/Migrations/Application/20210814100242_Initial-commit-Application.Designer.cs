@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Conscious.Choice.OnionApi.Persistence.Migrations.Application
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20210716173443_Initial-commit-Application")]
+    [Migration("20210814100242_Initial-commit-Application")]
     partial class InitialcommitApplication
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -193,11 +193,14 @@ namespace Conscious.Choice.OnionApi.Persistence.Migrations.Application
                     b.Property<int>("Category")
                         .HasColumnType("int");
 
+                    b.Property<DateTime>("LawDate")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("LawName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("LawNumber")
-                        .HasColumnType("int");
+                    b.Property<string>("LawNumber")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
