@@ -9,26 +9,29 @@ using System.Threading.Tasks;
 
 namespace Conscious.Choice.OnionApi.Service.Features.DeputyFeatures.Queries
 {
-    public class GetDeputyActivityQuery : IRequest<DeputyActivity>
+    public class GetMDeputyQuery : IRequest<MDeputy>
     {
         public string Name { get; set; }
-        public class GetDeputyActivityQueryHandler : IRequestHandler<GetDeputyActivityQuery, DeputyActivity>
+        public class GetMDeputyQueryHandler : IRequestHandler<GetMDeputyQuery, MDeputy>
         {
             private readonly IApplicationDbContext _context;
-            public GetDeputyActivityQueryHandler(IApplicationDbContext context)
+            public GetMDeputyQueryHandler(IApplicationDbContext context)
             {
                 _context = context;
             }
-            public async Task<DeputyActivity> Handle(GetDeputyActivityQuery request, CancellationToken cancellationToken)
+            public async Task<MDeputy> Handle(GetMDeputyQuery request, CancellationToken cancellationToken)
             {
-                DeputyActivity deputy = new DeputyActivity();
+                MDeputy deputy = new MDeputy();
                 deputy.Name = request.Name;
-                int id = _context.Deputies.Where(d => d.Name == request.Name).FirstOrDefault().Id;
+                var deputyFromDb = _context.Deputies.Where(d => d.Name == request.Name)?.FirstOrDefault();
+                if (deputyFromDb == null)
+                    return null;
+
+                int id = deputyFromDb.Id;
                 var Votes = _context.Votes.Include(v => v.LawsAmendment).Include(w => w.LawsAmendment.Law)
                                           .Where(v => v.DeputyId == id).ToList();
 
                 deputy.Votes = Votes;
-                if (deputy == null) return null;
                 return deputy;
             }
         }

@@ -35,6 +35,12 @@ namespace Conscious.Choice.OnionApi.Controllers
             return Ok(await Mediator.Send(new GetLawByIdQuery { Id = id }));
         }
 
+        [HttpGet("amendments/{id}")]
+        public async Task<IActionResult> GetAmendmentsById(int id)
+        {
+            return Ok(await Mediator.Send(new GetLawsAmendmentsByIdQuery { Id = id }));
+        }
+
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {

@@ -35,10 +35,10 @@ namespace Conscious.Choice.OnionApi.Controllers
             return Ok(await Mediator.Send(new GetDeputyByIdQuery { Id = id }));
         }
 
-        [HttpGet("name/{name}")]
+        [HttpGet("vote/{name}")]
         public async Task<IActionResult> GetAllActivity(string name)
         {
-            return Ok(await Mediator.Send(new GetDeputyActivityQuery { Name = name }));
+            return Ok(await Mediator.Send(new GetMDeputyQuery { Name = name }));
         }
 
         [HttpDelete("{id}")]
