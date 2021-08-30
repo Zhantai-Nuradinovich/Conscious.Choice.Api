@@ -111,7 +111,11 @@ namespace Conscious.Choice.OnionApi.Infrastructure.Extension
 
         public static void AddController(this IServiceCollection serviceCollection)
         {
-            serviceCollection.AddControllers().AddNewtonsoftJson();
+            serviceCollection.AddControllers()
+                .AddNewtonsoftJson(options => 
+                {
+                    options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
+                });
         }
 
         public static void AddVersion(this IServiceCollection serviceCollection)

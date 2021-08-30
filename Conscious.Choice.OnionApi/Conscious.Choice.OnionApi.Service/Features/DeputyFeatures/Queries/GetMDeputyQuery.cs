@@ -28,7 +28,7 @@ namespace Conscious.Choice.OnionApi.Service.Features.DeputyFeatures.Queries
                     return null;
 
                 int id = deputyFromDb.Id;
-                var Votes = _context.Votes.Include(v => v.LawsAmendment).Include(w => w.LawsAmendment.Law)
+                var Votes = _context.Votes.Include(v => v.LawsAmendment.Law)
                                           .Where(v => v.DeputyId == id).ToList();
 
                 deputy.Votes = Votes;
