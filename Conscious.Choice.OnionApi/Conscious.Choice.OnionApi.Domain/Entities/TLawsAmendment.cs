@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Conscious.Choice.OnionApi.Domain.Entities
 {
-    public class TLawsAmendment: BaseEntity
+    public class TLawsAmendment: BaseEntity //RLawsAmendment
     {
         public int LawId { get; set; }
         public TLaw Law { get; set; }

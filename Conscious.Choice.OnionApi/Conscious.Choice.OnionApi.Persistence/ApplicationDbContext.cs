@@ -26,6 +26,11 @@ namespace Conscious.Choice.OnionApi.Persistence
         public DbSet<TVote> Votes { get; set; }
         public DbSet<TLawsAmendment> Amendments { get; set; }
         public DbSet<TSetting> Settings { get; set; }
+        public DbSet<TConvocation> Convocations { get; set; }
+        public DbSet<TParty> Parties { get; set; }
+        public DbSet<RPartyConvocation> PartyConvocations { get; set; }
+        public DbSet<RDeputyPartyMovingsHistory> DeputyPartyMovingsHistories { get; set; }
+        public DbSet<RDeputyUser> DeputyUsers { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
