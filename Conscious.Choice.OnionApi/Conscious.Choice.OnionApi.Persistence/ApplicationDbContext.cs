@@ -21,6 +21,8 @@ namespace Conscious.Choice.OnionApi.Persistence
         public DbSet<Product> Products { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<Supplier> Suppliers { get; set; }
+
+        #region Panakota models
         public DbSet<TDeputy> Deputies { get; set; }
         public DbSet<TLaw> Laws { get; set; }
         public DbSet<TVote> Votes { get; set; }
@@ -30,7 +32,8 @@ namespace Conscious.Choice.OnionApi.Persistence
         public DbSet<TParty> Parties { get; set; }
         public DbSet<RPartyConvocation> PartyConvocations { get; set; }
         public DbSet<RDeputyPartyMovingsHistory> DeputyPartyMovingsHistories { get; set; }
-        public DbSet<RDeputyUser> DeputyUsers { get; set; }
+        //public DbSet<RDeputyUser> DeputyUsers { get; set; }
+        #endregion
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

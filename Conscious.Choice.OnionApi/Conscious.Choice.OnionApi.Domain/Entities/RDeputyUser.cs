@@ -13,13 +13,14 @@ namespace Conscious.Choice.OnionApi.Domain.Entities
     public class RDeputyUser : BaseEntity
     {
         public int IdDeputy { get; set; }
-        public int IdUser { get; set; }
+        public string IdUser { get; set; }
         public bool IsFavorite { get; set; }
 
 
         [ForeignKey("IdDeputy")]
         public TDeputy Deputy { get; set; }
 
-        //public User User { get; set; }
+        [ForeignKey("IdUser")]
+        public Auth.ApplicationUser User { get; set; }
     }
 }

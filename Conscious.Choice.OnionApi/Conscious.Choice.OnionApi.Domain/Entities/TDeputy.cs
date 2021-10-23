@@ -16,7 +16,7 @@ namespace Conscious.Choice.OnionApi.Domain.Entities
         public bool IsRealDeputy { get; set; }
         public DateTime DateOfBirth { get; set; }
         public ICollection<TVote> Votes { get; set; }
-        public ICollection<RDeputyUser> DeputyUser { get; set; }
+        //public ICollection<RDeputyUser> DeputyUser { get; set; }
         public ICollection<RDeputyPartyMovingsHistory> DeputyPartyMovingsHistory { get; set; }
     }
 }

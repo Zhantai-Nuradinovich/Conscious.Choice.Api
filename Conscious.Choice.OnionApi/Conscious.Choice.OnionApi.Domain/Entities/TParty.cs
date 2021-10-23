@@ -12,7 +12,7 @@ namespace Conscious.Choice.OnionApi.Domain.Entities
         public string Name { get; set; }
         public string Description { get; set; }
         public DateTime CreationDate { get; set; }
-        public int IdLeaderDeputy { get; set; }
+        public int? IdLeaderDeputy { get; set; }
         /// <summary>
         /// Possible parent party. Optional property
         /// </summary>
