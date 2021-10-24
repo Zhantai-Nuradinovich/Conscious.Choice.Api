@@ -25,7 +25,7 @@ Product consists of three parts: API, Frontend (Angular), Telegram-bot.
  - Choose Conscious.Choice.OnionApi as a Startup project
  - Open Package Manager Console, select << ProjectName >>.Persistence as Default Project
  - Run these commands:
- - 
+ - Restore database using SSMS (bkp files in additional links)
 ```
 PM> add-migration Initial-commit-Application -Context ApplicationDbContext -o Migrations/Application
 PM> add-migration Identity-commit -Context IdentityContext -o Migrations/Identity
@@ -39,3 +39,4 @@ PM> update-database -Context IdentityContext
 ### Additional links 
 - [Telegram-bot](https://github.com/SsamansS/consciousvote) repository that uses this API 
 - [Frontend](https://kinsta.com/wp-content/uploads/2017/10/501-not-implemented-error-social-1.png)
+- [DataBase](https://github.com/Zhantai-Nuradinovich/PanakotaDb) repository for Database and some scripts
