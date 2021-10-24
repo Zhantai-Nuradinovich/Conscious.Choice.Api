@@ -9,6 +9,11 @@ namespace Conscious.Choice.OnionApi.Domain.Entities
 {
     public class TParty : BaseEntity
     {
+        public TParty()
+        {
+            RDeputyPartyMovingsHistory = new HashSet<RDeputyPartyMovingsHistory>();
+            RPartyConvocation = new HashSet<RPartyConvocation>();
+        }
         public string Name { get; set; }
         public string Description { get; set; }
         public DateTime CreationDate { get; set; }
@@ -23,7 +28,7 @@ namespace Conscious.Choice.OnionApi.Domain.Entities
         [ForeignKey("IdParentParty")]
         public TParty ParentParty { get; set; }
 
-        public ICollection<RDeputyPartyMovingsHistory> DeputyPartyMovingsHistory { get; set; }
-        public ICollection<RPartyConvocation> PartyConvocation { get; set; }
+        public ICollection<RDeputyPartyMovingsHistory> RDeputyPartyMovingsHistory { get; set; }
+        public ICollection<RPartyConvocation> RPartyConvocation { get; set; }
     }
 }

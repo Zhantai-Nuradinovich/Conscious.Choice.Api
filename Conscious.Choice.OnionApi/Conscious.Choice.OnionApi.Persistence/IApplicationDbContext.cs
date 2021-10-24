@@ -6,16 +6,16 @@ namespace Conscious.Choice.OnionApi.Persistence
 {
     public interface IApplicationDbContext
     {
-        DbSet<Category> Categories { get; set; }
-        DbSet<Customer> Customers { get; set; }
-        DbSet<Order> Orders { get; set; }
-        DbSet<Product> Products { get; set; }
-        DbSet<Supplier> Suppliers { get; set; }
         DbSet<TDeputy> Deputies { get; set; }
         DbSet<TLaw> Laws { get; set; }
         DbSet<TVote> Votes { get; set; }
         DbSet<TSetting> Settings { get; set; }
-        DbSet<TLawsAmendment> Amendments { get; set; }
+        DbSet<RLawsAmendment> Amendments { get; set; }
+        public DbSet<TConvocation> Convocations { get; set; }
+        public DbSet<TParty> Parties { get; set; }
+        public DbSet<RPartyConvocation> PartyConvocations { get; set; }
+        public DbSet<RDeputyPartyMovingsHistory> DeputyPartyMovingsHistories { get; set; }
+        public DbSet<RDeputyUser> DeputyUsers { get; set; }
         Task<int> SaveChangesAsync();
     }
 }

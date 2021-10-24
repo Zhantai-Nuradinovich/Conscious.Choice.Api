@@ -32,17 +32,17 @@ namespace Conscious.Choice.OnionApi.Service
         {
             if (configuration.GetValue<bool>("UseInMemoryDatabase"))
             {
-                services.AddDbContext<IdentityContext>(options =>
+                services.AddDbContext<ApplicationDbContext>(options =>
                     options.UseInMemoryDatabase("IdentityDb"));
             }
             else
             {
-                services.AddDbContext<IdentityContext>(options =>
+                services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                     configuration.GetConnectionString("IdentityConnection"),
-                    b => b.MigrationsAssembly(typeof(IdentityContext).Assembly.FullName)));
+                    b => b.MigrationsAssembly(typeof(ApplicationDbContext).Assembly.FullName)));
             }
-            services.AddIdentity<ApplicationUser, IdentityRole>().AddEntityFrameworkStores<IdentityContext>()
+            services.AddIdentity<ApplicationUser, IdentityRole>().AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
             #region Services
             services.AddTransient<IAccountService, AccountService>();

@@ -9,6 +9,12 @@ namespace Conscious.Choice.OnionApi.Domain.Entities
     /// </summary>
     public class TDeputy : BaseEntity
     {
+        public TDeputy()
+        {
+            Votes = new HashSet<TVote>();
+            DeputyUser = new HashSet<RDeputyUser>();
+            DeputyPartyMovingsHistory = new HashSet<RDeputyPartyMovingsHistory>();
+        }
         public string Name { get; set; }
         /// <summary>
         /// If not, it's just a Candidate
@@ -16,7 +22,7 @@ namespace Conscious.Choice.OnionApi.Domain.Entities
         public bool IsRealDeputy { get; set; }
         public DateTime DateOfBirth { get; set; }
         public ICollection<TVote> Votes { get; set; }
-        //public ICollection<RDeputyUser> DeputyUser { get; set; }
+        public ICollection<RDeputyUser> DeputyUser { get; set; }
         public ICollection<RDeputyPartyMovingsHistory> DeputyPartyMovingsHistory { get; set; }
     }
 }
