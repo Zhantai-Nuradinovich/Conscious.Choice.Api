@@ -1,7 +1,5 @@
 # API for conscious choice 
 
-[View in Azure](https://panakota.azurewebsites.net/OpenAPI/index.html)
-
 ## About product 
 
 It helps voters to get all information about deputies. Information consists of voting results on bills. 
@@ -27,11 +25,7 @@ Product consists of three parts: API, Frontend (Angular), Telegram-bot.
  - Run these commands:
  - Restore database using SSMS (bkp files in additional links)
 ```
-PM> add-migration Initial-commit-Application -Context ApplicationDbContext -o Migrations/Application
-PM> add-migration Identity-commit -Context IdentityContext -o Migrations/Identity
-
 PM> update-database -Context ApplicationDbContext 
-PM> update-database -Context IdentityContext 
 ```
  - Build and Run application
 
