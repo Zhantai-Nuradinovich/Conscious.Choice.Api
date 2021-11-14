@@ -22,20 +22,20 @@ namespace Conscious.Choice.OnionApi.Service.Features.VoteFeatures.Commands
             }
             public async Task<int> Handle(UpdateVoteCommand request, CancellationToken cancellationToken)
             {
-                var cust = _context.Votes.Where(a => a.Id == request.Id).FirstOrDefault();
+                var vote = _context.Votes.Where(a => a.Id == request.Id).FirstOrDefault();
 
-                if (cust == null)
+                if (vote == null)
                 {
                     return default;
                 }
                 else
                 {
-                    cust.Decision = request.Decision;
-                    cust.LawsAmendmentId = request.LawsAmendmentId;
-                    cust.DeputyId = request.DeputyId;
-                    _context.Votes.Update(cust);
+                    vote.Decision = request.Decision;
+                    vote.LawsAmendmentId = request.LawsAmendmentId;
+                    vote.DeputyId = request.DeputyId;
+                    _context.Votes.Update(vote);
                     await _context.SaveChangesAsync();
-                    return cust.Id;
+                    return vote.Id;
                 }
             }
         }

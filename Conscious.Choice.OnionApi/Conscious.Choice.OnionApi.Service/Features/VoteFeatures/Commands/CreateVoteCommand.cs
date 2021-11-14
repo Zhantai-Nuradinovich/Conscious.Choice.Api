@@ -20,14 +20,14 @@ namespace Conscious.Choice.OnionApi.Service.Features.VoteFeatures.Commands
             }
             public async Task<int> Handle(CreateVoteCommand request, CancellationToken cancellationToken)
             {
-                var Vote = new TVote();
-                Vote.Decision = request.Decision;
-                Vote.DeputyId = request.DeputyId;
-                Vote.LawsAmendmentId = request.LawsAmendemntId;
+                var vote = new TVote();
+                vote.Decision = request.Decision;
+                vote.DeputyId = request.DeputyId;
+                vote.LawsAmendmentId = request.LawsAmendemntId;
 
-                _context.Votes.Add(Vote);
+                _context.Votes.Add(vote);
                 await _context.SaveChangesAsync();
-                return Vote.Id;
+                return vote.Id;
             }
         }
     }

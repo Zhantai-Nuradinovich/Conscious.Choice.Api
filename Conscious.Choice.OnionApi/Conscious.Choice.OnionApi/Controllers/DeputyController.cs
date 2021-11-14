@@ -35,18 +35,25 @@ namespace Conscious.Choice.OnionApi.Controllers
             return Ok(await Mediator.Send(new GetDeputyByIdQuery { Id = id }));
         }
 
-        [HttpGet("vote/{name}")]
-        public async Task<IActionResult> GetAllActivity(string name)
+        #region Auxiliary getters
+        [HttpGet("votes/{name}")]
+        public async Task<IActionResult> GetDeputyVotesByName(string name)
         {
-            return Ok(await Mediator.Send(new GetMDeputyQuery { Name = name }));
+            return Ok(await Mediator.Send(new GetDeputyVotesByNameQuery { Name = name }));
         }
+        
+        [HttpGet("party/name={name}&id={id}")]
+        public async Task<IActionResult> GetDeputiesByPartyNameOrId(string name, int id)
+        {
+            return BadRequest();
+        }
+        #endregion
 
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
             return Ok(await Mediator.Send(new DeleteDeputyByIdCommand { Id = id }));
         }
-
 
         [HttpPut("{id}")]
         public async Task<IActionResult> Update(int id, UpdateDeputyCommand command)

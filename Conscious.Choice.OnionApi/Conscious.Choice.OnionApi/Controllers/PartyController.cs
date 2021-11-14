@@ -1,5 +1,5 @@
-﻿using Conscious.Choice.OnionApi.Service.Features.VoteFeatures.Commands;
-using Conscious.Choice.OnionApi.Service.Features.VoteFeatures.Queries;
+﻿using Conscious.Choice.OnionApi.Service.Features.PartyFeatures.Commands;
+using Conscious.Choice.OnionApi.Service.Features.PartyFeatures.Queries;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -9,15 +9,15 @@ using System.Threading.Tasks;
 namespace Conscious.Choice.OnionApi.Controllers
 {
     [ApiController]
-    [Route("api/v{version:apiVersion}/Vote")]
+    [Route("api/v{version:apiVersion}/Party")]
     [ApiVersion("1.0")]
-    public class VoteController : ControllerBase
+    public class PartyController : ControllerBase
     {
         private IMediator _mediator;
         protected IMediator Mediator => _mediator ??= HttpContext.RequestServices.GetService<IMediator>();
 
         [HttpPost]
-        public async Task<IActionResult> Create(CreateVoteCommand command)
+        public async Task<IActionResult> Create(CreatePartyCommand command)
         {
             return Ok(await Mediator.Send(command));
         }
@@ -26,32 +26,34 @@ namespace Conscious.Choice.OnionApi.Controllers
         [Route("")]
         public async Task<IActionResult> GetAll()
         {
-            return Ok(await Mediator.Send(new GetAllVoteQuery()));
+            return Ok(await Mediator.Send(new GetAllPartyQuery()));
         }
 
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(int id)
         {
-            return Ok(await Mediator.Send(new GetVoteByIdQuery { Id = id }));
+            return Ok(await Mediator.Send(new GetPartyByIdQuery { Id = id }));
         }
 
-        #region Auxilary getters
-        [HttpGet("amendment/{id}")]
-        public async Task<IActionResult> GetVotesByAmendmentId(int id)
+        #region Auxiliary getters
+        [HttpGet("convocation/{id}")]
+        public async Task<IActionResult> GetPartiesByConvocationId(int id)
         {
-            return Ok(await Mediator.Send(new GetPartiesByAmendmentIdQuery { Id = id }));
+            return BadRequest();
         }
+
+
         #endregion
 
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
-            return Ok(await Mediator.Send(new DeleteVoteByIdCommand { Id = id }));
+            return Ok(await Mediator.Send(new DeletePartyByIdCommand { Id = id }));
         }
 
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> Update(int id, UpdateVoteCommand command)
+        public async Task<IActionResult> Update(int id, UpdatePartyCommand command)
         {
             if (id != command.Id)
             {

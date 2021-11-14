@@ -9,17 +9,17 @@ using System.Threading.Tasks;
 
 namespace Conscious.Choice.OnionApi.Service.Features.DeputyFeatures.Queries
 {
-    public class GetMDeputyQuery : IRequest<MDeputy>
+    public class GetDeputyVotesByNameQuery : IRequest<MDeputy>
     {
         public string Name { get; set; }
-        public class GetMDeputyQueryHandler : IRequestHandler<GetMDeputyQuery, MDeputy>
+        public class GetDeputyVotesByNameQueryHandler : IRequestHandler<GetDeputyVotesByNameQuery, MDeputy>
         {
             private readonly IApplicationDbContext _context;
-            public GetMDeputyQueryHandler(IApplicationDbContext context)
+            public GetDeputyVotesByNameQueryHandler(IApplicationDbContext context)
             {
                 _context = context;
             }
-            public async Task<MDeputy> Handle(GetMDeputyQuery request, CancellationToken cancellationToken)
+            public async Task<MDeputy> Handle(GetDeputyVotesByNameQuery request, CancellationToken cancellationToken)
             {
                 MDeputy deputy = new MDeputy();
                 deputy.Name = request.Name;
