@@ -16,6 +16,28 @@ namespace Conscious.Choice.OnionApi.Controllers
         private IMediator _mediator;
         protected IMediator Mediator => _mediator ??= HttpContext.RequestServices.GetService<IMediator>();
 
+        #region Auxiliary getters
+        [HttpGet("votes/{name}")]
+        public async Task<IActionResult> GetDeputyVotesByName(string name)
+        {
+            return Ok(await Mediator.Send(new GetDeputyVotesByNameQuery { Name = name }));
+        }
+        
+        [HttpGet("party/name={name}&id={id}")]
+        public async Task<IActionResult> GetDeputiesByPartyNameOrId(string name, int id)
+        {
+            return BadRequest();
+        }
+
+        [HttpGet("movingshistory/{id}")]
+        public async Task<IActionResult> GetDeputyMovingsHistory(int id)
+        {
+            return BadRequest();
+            //return Ok(await Mediator.Send(new GetDeputyMovingsHistory { Id = id }));
+        }
+        #endregion
+
+        #region CRUD
         [HttpPost]
         public async Task<IActionResult> Create(CreateDeputyCommand command)
         {
@@ -35,20 +57,6 @@ namespace Conscious.Choice.OnionApi.Controllers
             return Ok(await Mediator.Send(new GetDeputyByIdQuery { Id = id }));
         }
 
-        #region Auxiliary getters
-        [HttpGet("votes/{name}")]
-        public async Task<IActionResult> GetDeputyVotesByName(string name)
-        {
-            return Ok(await Mediator.Send(new GetDeputyVotesByNameQuery { Name = name }));
-        }
-        
-        [HttpGet("party/name={name}&id={id}")]
-        public async Task<IActionResult> GetDeputiesByPartyNameOrId(string name, int id)
-        {
-            return BadRequest();
-        }
-        #endregion
-
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
@@ -64,5 +72,6 @@ namespace Conscious.Choice.OnionApi.Controllers
             }
             return Ok(await Mediator.Send(command));
         }
+        #endregion
     }
 }

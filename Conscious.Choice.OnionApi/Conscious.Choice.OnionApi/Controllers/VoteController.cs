@@ -16,6 +16,15 @@ namespace Conscious.Choice.OnionApi.Controllers
         private IMediator _mediator;
         protected IMediator Mediator => _mediator ??= HttpContext.RequestServices.GetService<IMediator>();
 
+        #region Auxilary getters
+        [HttpGet("amendment/{id}")]
+        public async Task<IActionResult> GetVotesByAmendmentId(int id)
+        {
+            return Ok(await Mediator.Send(new GetPartiesByAmendmentIdQuery { Id = id }));
+        }
+        #endregion
+
+        #region CRUD
         [HttpPost]
         public async Task<IActionResult> Create(CreateVoteCommand command)
         {
@@ -35,14 +44,6 @@ namespace Conscious.Choice.OnionApi.Controllers
             return Ok(await Mediator.Send(new GetVoteByIdQuery { Id = id }));
         }
 
-        #region Auxilary getters
-        [HttpGet("amendment/{id}")]
-        public async Task<IActionResult> GetVotesByAmendmentId(int id)
-        {
-            return Ok(await Mediator.Send(new GetPartiesByAmendmentIdQuery { Id = id }));
-        }
-        #endregion
-
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
@@ -59,5 +60,7 @@ namespace Conscious.Choice.OnionApi.Controllers
             }
             return Ok(await Mediator.Send(command));
         }
+
+        #endregion
     }
 }
