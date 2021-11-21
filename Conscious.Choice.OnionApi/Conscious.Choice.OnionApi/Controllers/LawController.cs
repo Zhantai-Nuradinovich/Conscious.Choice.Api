@@ -25,7 +25,7 @@ namespace Conscious.Choice.OnionApi.Controllers
         #endregion
         #region CRUD
         [HttpPost]
-        public async Task<IActionResult> Create(CreateLawCommand command)
+        public async Task<IActionResult> Create(CreateConvocationCommand command)
         {
             return Ok(await Mediator.Send(command));
         }
@@ -34,24 +34,24 @@ namespace Conscious.Choice.OnionApi.Controllers
         [Route("")]
         public async Task<IActionResult> GetAll()
         {
-            return Ok(await Mediator.Send(new GetAllLawQuery()));
+            return Ok(await Mediator.Send(new GetAllConvocationQuery()));
         }
 
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(int id)
         {
-            return Ok(await Mediator.Send(new GetLawByIdQuery { Id = id }));
+            return Ok(await Mediator.Send(new GetConvocationByIdQuery { Id = id }));
         }
 
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
-            return Ok(await Mediator.Send(new DeleteLawByIdCommand { Id = id }));
+            return Ok(await Mediator.Send(new DeleteConvocationByIdCommand { Id = id }));
         }
 
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> Update(int id, UpdateLawCommand command)
+        public async Task<IActionResult> Update(int id, UpdateConvocationCommand command)
         {
             if (id != command.Id)
             {

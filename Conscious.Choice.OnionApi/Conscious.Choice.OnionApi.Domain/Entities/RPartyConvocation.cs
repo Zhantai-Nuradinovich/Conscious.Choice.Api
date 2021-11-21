@@ -11,6 +11,7 @@ namespace Conscious.Choice.OnionApi.Domain.Entities
     {
         public int IdParty { get; set; }
         public int IdConvocation { get; set; }
+        public bool HasWon { get; set; }
 
         [ForeignKey("IdParty")]
         public TParty Party { get; set; }
