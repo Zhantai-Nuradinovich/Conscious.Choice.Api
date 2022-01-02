@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Conscious.Choice.OnionApi.Domain.Enum;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
@@ -22,6 +23,10 @@ namespace Conscious.Choice.OnionApi.Domain.Entities
         /// Possible parent party. Optional property
         /// </summary>
         public int? IdParentParty { get; set; }
+
+        public PartyStatus PartyStatus { get; set; }
+
+        public sbyte[] Logo { get; set; }
 
         [ForeignKey("IdLeaderDeputy")]
         public TDeputy Leader { get; set; }
