@@ -1,6 +1,7 @@
 ﻿using Conscious.Choice.OnionApi.Domain.Enum;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
@@ -26,7 +27,8 @@ namespace Conscious.Choice.OnionApi.Domain.Entities
 
         public PartyStatus PartyStatus { get; set; }
 
-        public sbyte[] Logo { get; set; }
+        [DataType("image")]
+        public byte[] Logo { get; set; }
 
         [ForeignKey("IdLeaderDeputy")]
         public TDeputy Leader { get; set; }
