@@ -74,12 +74,16 @@ namespace Conscious.Choice.OnionApi.Persistence
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            if (!optionsBuilder.IsConfigured)
-            {
-                optionsBuilder
-                .UseSqlServer("DataSource=Panakota.db");
-            }
+            //MS sql
+            //if (!optionsBuilder.IsConfigured)
+            //{
+            //    optionsBuilder
+            //    .UseSqlServer("DataSource=Panakota.db");
+            //}
 
+            //sqlLite
+            optionsBuilder
+                .UseSqlite("Filename=Panakota.db");
         }
 
         public async Task<int> SaveChangesAsync()

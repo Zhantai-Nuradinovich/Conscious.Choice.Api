@@ -24,7 +24,7 @@ namespace Conscious.Choice.OnionApi.Infrastructure.Extension
              IConfiguration configuration, IConfigurationRoot configRoot)
         {
             serviceCollection.AddDbContext<ApplicationDbContext>(options =>
-                   options.UseSqlServer(configuration.GetConnectionString("OnionArchConn") ?? configRoot["ConnectionStrings:OnionArchConn"]
+                   options.UseSqlite(configuration.GetConnectionString("OnionArchConn") ?? configRoot["ConnectionStrings:OnionArchConn"]
                 , b => b.MigrationsAssembly(typeof(ApplicationDbContext).Assembly.FullName)));
 
 
