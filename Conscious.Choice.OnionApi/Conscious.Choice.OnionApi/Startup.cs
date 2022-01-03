@@ -34,6 +34,9 @@ namespace Conscious.Choice.OnionApi
 
             AppSettings = new AppSettings();
             Configuration.Bind(AppSettings);
+
+            using (var client = new ApplicationDbContext())
+                client.Database.EnsureCreated();
         }
 
         public IConfiguration Configuration { get; }
@@ -63,6 +66,8 @@ namespace Conscious.Choice.OnionApi
             services.AddHealthCheck(AppSettings, Configuration);
 
             services.AddFeatureManagement();
+
+            services.AddEntityFrameworkSqlite().AddDbContext<ApplicationDbContext>();
         }
 
 

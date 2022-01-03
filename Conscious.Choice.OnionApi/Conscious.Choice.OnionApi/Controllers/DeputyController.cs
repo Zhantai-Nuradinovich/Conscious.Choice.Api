@@ -23,13 +23,13 @@ namespace Conscious.Choice.OnionApi.Controllers
             return Ok(await Mediator.Send(new GetDeputyVotesByNameQuery { Name = name }));
         }
         
-        [HttpGet("party?name={name}&id={id}")]
-        public async Task<IActionResult> GetDeputiesByPartyNameOrId(string name, int id)
+        [HttpGet("party/{id}")]
+        public async Task<IActionResult> GetDeputiesByPartyId(int id)
         {
             return BadRequest();
         }
 
-        [HttpGet("movingshistory/{id}")]
+        [HttpGet("{id}/movingshistory")]
         public async Task<IActionResult> GetDeputyMovingsHistory(int id)
         {
             return BadRequest();
